@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageButton"
+        android:src="@drawable/recordicon"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/calendarView" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageButton2"
+        android:src="@drawable/stoppicon"
+        android:layout_alignEnd="@+id/calendarView" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageButton3"
+        android:src="@drawable/playicon"
+        android:layout_below="@+id/imageButton"
+        android:layout_alignStart="@+id/imageButton" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageButton4"
+        android:src="@drawable/saveicon"
+        android:layout_below="@+id/imageButton2"
+        android:layout_alignStart="@+id/imageButton2" />
+
+    <CalendarView
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:id="@+id/calendarView"
+        android:layout_below="@+id/imageButton3"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
