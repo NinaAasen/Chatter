@@ -12,14 +12,16 @@
         android:src="@drawable/recordicon"
         android:layout_alignParentTop="true"
         android:layout_alignStart="@+id/calendarView"
-        android:onClick="recordButtonOnClick" />
+        android:onClick="recordAudio"
+        android:clickable="true" />
 
     <ImageButton
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/stopButton"
         android:src="@drawable/stoppicon"
-        android:layout_alignEnd="@+id/calendarView" />
+        android:layout_alignEnd="@+id/calendarView"
+        android:onClick="stopAudio" />
 
     <ImageButton
         android:layout_width="100dp"
@@ -27,7 +29,8 @@
         android:id="@+id/playButton"
         android:src="@drawable/playicon"
         android:layout_below="@+id/recButton"
-        android:layout_alignStart="@+id/recButton" />
+        android:layout_alignStart="@+id/recButton"
+        android:onClick="playAudio" />
 
     <ImageButton
         android:layout_width="100dp"
@@ -35,7 +38,8 @@
         android:id="@+id/saveButton"
         android:src="@drawable/saveicon"
         android:layout_below="@+id/stopButton"
-        android:layout_alignStart="@+id/stopButton" />
+        android:layout_alignStart="@+id/stopButton"
+        android:onClick="save" />
 
     <CalendarView
         android:layout_width="300dp"
