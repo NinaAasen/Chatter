@@ -32,7 +32,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         recButton = (ImageButton) findViewById(R.id.recButton);
-        playButton = (ImageButton) findViewById(R.id.playButton);
         stopButton = (ImageButton) findViewById(R.id.stopButton);
 
         audioFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/myaudio.3gp";
@@ -41,7 +40,6 @@ public class MainActivity extends Activity {
     public void recordAudio(View view) throws IOException {
         boolean isRecording = true;
         stopButton.setEnabled(true);
-        playButton.setEnabled(false);
         recButton.setEnabled(false);
 
         try {
