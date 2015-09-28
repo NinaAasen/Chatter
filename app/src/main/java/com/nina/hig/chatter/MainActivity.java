@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
     private static ImageButton playButton;
     private static ImageButton recButton;
 
-    private boolean isRecording = false; 
+    private boolean isRecording = false;
     */
 
 
