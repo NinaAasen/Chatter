@@ -6,32 +6,16 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
-import android.content.pm.PackageManager;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+
 
 
 public class MainActivity extends Activity {
-
-    /*
-    private static MediaRecorder mediaRecorder;
-
-    private static String audioFilePath;
-    private static ImageButton stopButton;
-    private static ImageButton playButton;
-    private static ImageButton recButton;
-
-    private boolean isRecording = false;
-    */
-
 
     // Using: https://www.youtube.com/watch?v=XANjoeEeQ1Y
 
@@ -77,7 +61,7 @@ public class MainActivity extends Activity {
         has been pressed with a switch
         */
 
-        loadFilesToView();
+        loadFilesToView(); // Update files into listview
 
         switch (v.getId()) {
             case R.id.btnRec:
@@ -112,7 +96,6 @@ public class MainActivity extends Activity {
                 }
             break;
         }
-
     }
 
     private void stopPlayBack() {
@@ -121,14 +104,16 @@ public class MainActivity extends Activity {
         }
     }
 
+    // Play method
     private void playRec() throws IOException {
-        clearMediaPlay();
+        clearMediaPlay(); /* Get ready */
         mPlay = new MediaPlayer();
-        mPlay.setDataSource(saveFiles);
-        mPlay.prepare();
-        mPlay.start();
+        mPlay.setDataSource(saveFiles); // file location
+        mPlay.prepare(); // prepare to play
+        mPlay.start(); // start playing
     }
 
+    // as above but with file name
     private void playRecNum(int name) throws IOException {
         clearMediaPlay();
         mPlay = new MediaPlayer();
@@ -136,9 +121,6 @@ public class MainActivity extends Activity {
         mPlay.prepare();
         mPlay.start();
     }
-
-
-
 
     private void clearMediaPlay() {
         if (mPlay != null) {
@@ -150,6 +132,7 @@ public class MainActivity extends Activity {
         }
     }
 
+    // stop if recording
     private void stopRec() {
         if (mRec != null) {
             mRec.stop();
@@ -157,10 +140,11 @@ public class MainActivity extends Activity {
         }
     }
 
+    // start recording
     private void startRec() throws IOException {
-        int numberOfFiles = 0;
-        File filex = new File(audioDirs);
-        File[] list = filex.listFiles();
+        int numberOfFiles = 0; // file now, gets next
+        File filex = new File(audioDirs); // file dir
+        File[] list = filex.listFiles(); // length of files
         for (File f: list) {
             String fname = f.getName();
             if(fname.endsWith(".3gpp")) {
@@ -201,11 +185,12 @@ public class MainActivity extends Activity {
             theNamesOfFile[i] = filelist[i].getName();
         }
 
-        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, theNamesOfFile);
+        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, theNamesOfFile);
         ListView listView = (ListView) findViewById(R.id.lv2);
         listView.setAdapter(itemsAdapter);
     }
 
+    // get clicked id and play that file +1
     private void playSelectedFile() {
         ListView audioToPlay = (ListView) findViewById(R.id.lv2);
         audioToPlay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
