@@ -5,36 +5,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity" >
 
-    <ImageButton
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/recButton"
-        android:src="@drawable/recordicon"
-        android:onClick="recordAudio"
-        android:clickable="true"
-        android:contentDescription="@string/recordButton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
-
-    <ImageButton
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/stopButton"
-        android:src="@drawable/stoppicon"
-        android:onClick="stopAudio"
-        android:contentDescription="@string/stopButton"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnRec"
         android:id="@+id/btnRec"
+        android:onClick="btnPress"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:onClick="btnPress" />
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="91dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -42,28 +21,33 @@
         android:text="@string/btnstop"
         android:id="@+id/btnStop"
         android:onClick="btnPress"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/btnDone"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignTop="@+id/btnRec"
+        android:layout_toEndOf="@+id/btnRec" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnplay"
         android:id="@+id/btnPlay"
-        android:layout_below="@+id/btnStop"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:onClick="btnPress" />
+        android:onClick="btnPress"
+        android:layout_below="@+id/btnRec"
+        android:layout_alignStart="@+id/btnRec" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnDone"
         android:id="@+id/btnDone"
-        android:layout_below="@+id/btnRec"
-        android:layout_alignStart="@+id/btnStop"
-        android:layout_marginTop="20dp"
-        android:onClick="btnPress" />
+        android:onClick="btnPress"
+        android:layout_below="@+id/btnStop"
+        android:layout_toEndOf="@+id/btnPlay" />
+
+    <ListView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv2"
+        android:layout_below="@+id/btnPlay"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp" />
 
 </RelativeLayout>
