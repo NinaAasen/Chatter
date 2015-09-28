@@ -4,21 +4,12 @@ import android.app.Activity;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
-import android.content.pm.PackageManager;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 
 public class MainActivity extends Activity {
@@ -35,7 +26,7 @@ public class MainActivity extends Activity {
     */
 
 
-    // Useing: https://www.youtube.com/watch?v=XANjoeEeQ1Y
+    // Using: https://www.youtube.com/watch?v=XANjoeEeQ1Y
 
     /* output file */
     private String saveFiles;
@@ -64,30 +55,17 @@ public class MainActivity extends Activity {
             Log.d("", "Folder created!");
         }
 
-        // Setting up savefiles pats
+        // Setting up savefiles paths
         audioDirs = getExternalCacheDir() + "/chatterFiles";
         saveFiles = audioDirs + "/1.3gpp";
-
-
-        loadFilesToView();
-        playSelectedFile();
-
-
-
-        /*
-        recButton = (ImageButton) findViewById(R.id.recButton);
-        stopButton = (ImageButton) findViewById(R.id.stopButton);
-
-        audioFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/myaudio.3gp";
-        */
     }
 
     public void btnPress(View v) {
 
-        // Going trough to get wich button
-        // has been pressed with a switch
-
-        loadFilesToView();
+        /*
+        Going trough to get which button
+        has been pressed with a switch
+        */
 
         switch (v.getId()) {
             case R.id.btnRec:
@@ -139,17 +117,6 @@ public class MainActivity extends Activity {
         mPlay.start();
     }
 
-    private void playRecNum(int name) throws IOException {
-        clearMediaPlay();
-        mPlay = new MediaPlayer();
-        mPlay.setDataSource(audioDirs + "/" + name + ".3gpp");
-        mPlay.prepare();
-        mPlay.start();
-    }
-
-
-
-
     private void clearMediaPlay() {
         if (mPlay != null) {
             try {
@@ -163,6 +130,7 @@ public class MainActivity extends Activity {
     private void stopRec() {
         if (mRec != null) {
             mRec.stop();
+            Toast.makeText(this, "audio recorded", Toast.LENGTH_SHORT).show(); //message to user when recording is stopped
         }
     }
 
@@ -191,6 +159,7 @@ public class MainActivity extends Activity {
         mRec.setOutputFile(saveFiles);
         mRec.prepare();
         mRec.start();
+        Toast.makeText(this, "recording", Toast.LENGTH_SHORT).show(); //message to user if recording is started
     }
 
     private void clearMediaRec() {
@@ -199,63 +168,4 @@ public class MainActivity extends Activity {
         }
     }
 
-    public void loadFilesToView() {
-        // Load files from dir to listview
-        // https://github.com/codepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView
-        File dir = new File(audioDirs);
-        File[] filelist = dir.listFiles();
-        String[] theNamesOfFile = new String[filelist.length];
-        for (int i = 0; i < theNamesOfFile.length; i++) {
-            theNamesOfFile[i] = filelist[i].getName();
-        }
-
-        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, theNamesOfFile);
-        ListView listView = (ListView) findViewById(R.id.lv2);
-        listView.setAdapter(itemsAdapter);
-    }
-
-    private void playSelectedFile() {
-        ListView audioToPlay = (ListView) findViewById(R.id.lv2);
-        audioToPlay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                int pos = position + 1;
-                try {
-                    playRecNum(pos);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    /*
-    public void recordAudio(View view) throws IOException {
-        boolean isRecording = true;
-        stopButton.setEnabled(true);
-        recButton.setEnabled(false);
-
-        try {
-            mediaRecorder = new MediaRecorder();
-            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-            mediaRecorder.setOutputFile(audioFilePath);
-            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-            mediaRecorder.prepare();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        mediaRecorder.start();
-        Toast.makeText(this, "recording", Toast.LENGTH_SHORT).show();
-        }
-
-    public void stopAudio(View view) throws IOException {
-           mediaRecorder.stop();
-           mediaRecorder.reset();
-           mediaRecorder.release();
-           mediaRecorder = null;
-           Toast.makeText(this, "audio recorded", Toast.LENGTH_SHORT).show();
-    }*/
 }
