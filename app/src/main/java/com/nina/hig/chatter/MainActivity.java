@@ -175,7 +175,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    public void loadFilesToView() {
+    private void loadFilesToView() {
         // Load files from dir to listview
         // https://github.com/codepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView
         File dir = new File(audioDirs);
