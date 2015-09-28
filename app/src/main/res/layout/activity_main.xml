@@ -35,7 +35,7 @@
     <Button
         android:layout_width="250dp"
         android:layout_height="100dp"
-        android:text="@string/btnplay"
+        android:text="@string/btnPlay"
         android:id="@+id/btnPlay"
         android:layout_below="@+id/btnStop"
         android:layout_centerHorizontal="true"

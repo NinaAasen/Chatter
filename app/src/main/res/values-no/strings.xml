@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">Chatter</string>
-    <string name="translate">Oversettelse</string>
-    <string name="stopButton">Stoppknapp</string>
-    <string name="recordButton">Opptaksknapp</string>
-    <string name="playButton">Spillknapp</string>
-    <string name="action_settings">Instillinger</string>
-</resources>
+
+    <resources>
+        <string name="app_name">Chatter</string>
+        <string name="action_settings">Innstillinger</string>
+        <string name="btnRec">TA OPP</string>
+        <string name="btnStop">STOPP</string>
+        <string name="btnPlay">SPILL AV</string>
+        <string name="btnDone">STOPP AVSPILLING</string>
+     </resources>
+

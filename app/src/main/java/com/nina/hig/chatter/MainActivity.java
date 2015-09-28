@@ -4,13 +4,8 @@ import android.app.Activity;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
-import android.content.pm.PackageManager;
 import android.widget.Toast;
 
 import java.io.File;
@@ -31,7 +26,7 @@ public class MainActivity extends Activity {
     */
 
 
-    // Useing: https://www.youtube.com/watch?v=XANjoeEeQ1Y
+    // Using: https://www.youtube.com/watch?v=XANjoeEeQ1Y
 
     /* output file */
     private String saveFiles;
@@ -60,23 +55,17 @@ public class MainActivity extends Activity {
             Log.d("", "Folder created!");
         }
 
-        // Setting up savefiles pats
+        // Setting up savefiles paths
         audioDirs = getExternalCacheDir() + "/chatterFiles";
         saveFiles = audioDirs + "/1.3gpp";
-
-
-        /*
-        recButton = (ImageButton) findViewById(R.id.recButton);
-        stopButton = (ImageButton) findViewById(R.id.stopButton);
-
-        audioFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/myaudio.3gp";
-        */
     }
 
     public void btnPress(View v) {
 
-        // Going trough to get wich button
-        // has been pressed with a switch
+        /*
+        Going trough to get which button
+        has been pressed with a switch
+        */
 
         switch (v.getId()) {
             case R.id.btnRec:
@@ -141,6 +130,7 @@ public class MainActivity extends Activity {
     private void stopRec() {
         if (mRec != null) {
             mRec.stop();
+            Toast.makeText(this, "audio recorded", Toast.LENGTH_SHORT).show(); //message to user when recording is stopped
         }
     }
 
@@ -169,6 +159,7 @@ public class MainActivity extends Activity {
         mRec.setOutputFile(saveFiles);
         mRec.prepare();
         mRec.start();
+        Toast.makeText(this, "recording", Toast.LENGTH_SHORT).show(); //message to user if recording is started
     }
 
     private void clearMediaRec() {
@@ -177,34 +168,4 @@ public class MainActivity extends Activity {
         }
     }
 
-
-
-    /*
-    public void recordAudio(View view) throws IOException {
-        boolean isRecording = true;
-        stopButton.setEnabled(true);
-        recButton.setEnabled(false);
-
-        try {
-            mediaRecorder = new MediaRecorder();
-            mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-            mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-            mediaRecorder.setOutputFile(audioFilePath);
-            mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-            mediaRecorder.prepare();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        mediaRecorder.start();
-        Toast.makeText(this, "recording", Toast.LENGTH_SHORT).show();
-        }
-
-    public void stopAudio(View view) throws IOException {
-           mediaRecorder.stop();
-           mediaRecorder.reset();
-           mediaRecorder.release();
-           mediaRecorder = null;
-           Toast.makeText(this, "audio recorded", Toast.LENGTH_SHORT).show();
-    }*/
 }

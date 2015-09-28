@@ -2,8 +2,9 @@
 <resources>
     <string name="app_name">Chatter</string>
     <string name="action_settings">settings</string>
-    <string name="playButton">playButton</string>
-    <string name="recordButton">recButton</string>
-    <string name="stopButton">stopButton</string>
-    <string name="translate">Translation</string>
+    <string name="btnDone">STOP PLAYBACK</string>
+    <string name="btnPlay">PLAY</string>
+    <string name="btnRec">REC</string>
+    <string name="btnStop">STOP</string>
+    <string name="buttonRec">btnRec</string>
 </resources>
