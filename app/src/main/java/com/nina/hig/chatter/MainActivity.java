@@ -36,7 +36,6 @@ public class MainActivity extends Activity {
     /* output file */
     private String saveFiles;
     private String audioDirs;
-    private String appRoot;
 
     /* Making variables */
     private MediaPlayer mPlay;
