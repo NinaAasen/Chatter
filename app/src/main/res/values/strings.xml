@@ -6,6 +6,10 @@
     <string name="playButton">playButton</string>
     <string name="translate">Translation</string>
     <string name="Translation">Translation</string>
+    <string name="btnRec">REC</string>
+    <string name="btnstop">STOP</string>
+    <string name="btnplay">PLAY</string>
+    <string name="btnDone">DONE</string>
 </resources>
 
 
