@@ -11,13 +11,12 @@
         android:layout_height="100dp"
         android:text="@string/btnRec"
         android:id="@+id/btnRec"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
         android:background="#D4A190"
         android:fontFamily="trebuchet ms"
         android:textSize="28sp"
-        android:onClick="btnPress" />
+        android:onClick="btnPress"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/btnStop" />
 
     <Button
         android:layout_width="250dp"
@@ -25,37 +24,41 @@
         android:text="@string/btnStop"
         android:id="@+id/btnStop"
         android:onClick="btnPress"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/btnRec"
         android:background="#D4A190"
         android:fontFamily="trebuchet ms"
         android:textSize="28sp"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/btnRec"
+        android:layout_alignStart="@+id/btnPlay" />
 
     <Button
         android:layout_width="250dp"
         android:layout_height="100dp"
         android:text="@string/btnPlay"
         android:id="@+id/btnPlay"
-        android:layout_below="@+id/btnStop"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
         android:background="#D4A190"
         android:fontFamily="trebuchet ms"
         android:textSize="28sp"
-        android:onClick="btnPress" />
+        android:onClick="btnPress"
+        android:layout_below="@+id/btnStop"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="250dp"
         android:layout_height="100dp"
         android:text="@string/btnDone"
         android:id="@+id/btnDone"
-        android:layout_below="@+id/btnPlay"
-        android:layout_alignStart="@+id/btnPlay"
-        android:layout_marginTop="20dp"
         android:background="#D4A190"
         android:fontFamily="trebuchet ms"
         android:textSize="20sp"
-        android:onClick="btnPress" />
+        android:onClick="btnPress"
+        android:layout_below="@+id/btnPlay"
+        android:layout_centerHorizontal="true" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv2"
+        android:layout_below="@+id/btnDone"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

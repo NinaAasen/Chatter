@@ -6,10 +6,17 @@ import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.content.pm.PackageManager;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 
 public class MainActivity extends Activity {
@@ -58,6 +65,9 @@ public class MainActivity extends Activity {
         // Setting up savefiles paths
         audioDirs = getExternalCacheDir() + "/chatterFiles";
         saveFiles = audioDirs + "/1.3gpp";
+
+        loadFilesToView();
+        playSelectedFile();
     }
 
     public void btnPress(View v) {
@@ -66,6 +76,8 @@ public class MainActivity extends Activity {
         Going trough to get which button
         has been pressed with a switch
         */
+
+        loadFilesToView();
 
         switch (v.getId()) {
             case R.id.btnRec:
@@ -116,6 +128,17 @@ public class MainActivity extends Activity {
         mPlay.prepare();
         mPlay.start();
     }
+
+    private void playRecNum(int name) throws IOException {
+        clearMediaPlay();
+        mPlay = new MediaPlayer();
+        mPlay.setDataSource(audioDirs + "/" + name + ".3gpp");
+        mPlay.prepare();
+        mPlay.start();
+    }
+
+
+
 
     private void clearMediaPlay() {
         if (mPlay != null) {
@@ -168,4 +191,34 @@ public class MainActivity extends Activity {
         }
     }
 
+    public void loadFilesToView() {
+        // Load files from dir to listview
+        // https://github.com/codepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView
+        File dir = new File(audioDirs);
+        File[] filelist = dir.listFiles();
+        String[] theNamesOfFile = new String[filelist.length];
+        for (int i = 0; i < theNamesOfFile.length; i++) {
+            theNamesOfFile[i] = filelist[i].getName();
+        }
+
+        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, theNamesOfFile);
+        ListView listView = (ListView) findViewById(R.id.lv2);
+        listView.setAdapter(itemsAdapter);
+    }
+
+    private void playSelectedFile() {
+        ListView audioToPlay = (ListView) findViewById(R.id.lv2);
+        audioToPlay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int pos = position + 1;
+                try {
+                    playRecNum(pos);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 }
