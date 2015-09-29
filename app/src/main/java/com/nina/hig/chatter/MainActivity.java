@@ -33,20 +33,21 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Making appDir for savefiles
+        // Making appDir for save files
         File appDir = new File(getExternalCacheDir(), "chatterFiles");
         boolean success = false;
         if (!appDir.exists()) {
             success = appDir.mkdirs();
         }
+
+
         if (!success){
             Log.d("", "Folder not created :(");
-
         } else {
-            Log.d("", "Folder created!");
+            Log.d("", "Folder created! <3");
         }
 
-        // Setting up savefiles paths
+        // Setting up save files paths
         audioDirs = getExternalCacheDir() + "/chatterFiles";
         saveFiles = audioDirs + "/1.3gpp";
 
@@ -61,7 +62,8 @@ public class MainActivity extends Activity {
         has been pressed with a switch
         */
 
-        loadFilesToView(); // Update files into listview
+        // Update files into list view
+        loadFilesToView();
 
         switch (v.getId()) {
             case R.id.btnRec:
@@ -98,6 +100,8 @@ public class MainActivity extends Activity {
         }
     }
 
+    // If a file is playing in the player
+    // then stop the player.
     private void stopPlayBack() {
         if (mPlay != null) {
             mPlay.stop();
@@ -136,7 +140,8 @@ public class MainActivity extends Activity {
     private void stopRec() {
         if (mRec != null) {
             mRec.stop();
-            Toast.makeText(this, "audio recorded", Toast.LENGTH_SHORT).show(); //message to user when recording is stopped
+            // message to user when recording is stopped
+            Toast.makeText(this, "audio recorded", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -152,12 +157,23 @@ public class MainActivity extends Activity {
             }
         }
 
+        // If mRec is in use, release it
         clearMediaRec();
+
+        // New file, in save file location
         File outFile = new File(saveFiles);
+
+        // if the file exists, make next with the name x + 1
         if (outFile.exists()) {
-            // if file exists make next
             saveFiles = audioDirs + "/" + ++numberOfFiles + ".3gpp";
         }
+
+        // making a media recorder,
+        // using the mic,
+        // setting format to 3gpp
+        // Encoding to AMR_NB
+        // where to save the file
+        // preparing and starting the recording.
 
         mRec = new MediaRecorder();
         mRec.setAudioSource(MediaRecorder.AudioSource.MIC);
@@ -166,18 +182,25 @@ public class MainActivity extends Activity {
         mRec.setOutputFile(saveFiles);
         mRec.prepare();
         mRec.start();
-        Toast.makeText(this, "recording", Toast.LENGTH_SHORT).show(); //message to user if recording is started
+
+        // message to user if recording is started
+        Toast.makeText(this, "recording", Toast.LENGTH_SHORT).show();
     }
 
+    // If the mRec is in use, release it to
+    // be used next for next call.
     private void clearMediaRec() {
         if (mRec != null) {
             mRec.release();
         }
     }
 
+    // Load files from dir to list view
+    // https://github.com/codepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView
+    // multiple youtube videos was used but we only picked up some knowledge of each. the link
+    // provided did help the most.
+
     private void loadFilesToView() {
-        // Load files from dir to listview
-        // https://github.com/codepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView
         File dir = new File(audioDirs);
         File[] filelist = dir.listFiles();
         String[] theNamesOfFile = new String[filelist.length];
