@@ -188,6 +188,8 @@ public class MainActivity extends Activity {
         ArrayAdapter<String> itemsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, theNamesOfFile);
         ListView listView = (ListView) findViewById(R.id.lv2);
         listView.setAdapter(itemsAdapter);
+
+        Toast.makeText(this, "List updated with new files.", Toast.LENGTH_SHORT).show();
     }
 
     // get clicked id and play that file +1
